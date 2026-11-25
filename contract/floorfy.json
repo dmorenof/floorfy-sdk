@@ -1,0 +1,2235 @@
+{
+ "openapi": "3.0.3",
+ "info": {
+  "title": "Floorfy API",
+  "version": "1.0.0",
+  "description": "Floorfy REST API for agencies (properties, panoramas, services, users, folders, analytics, watermarks, subscription). Reconstructed from the public documentation at https://developers.floorfy.com/ : Floorfy publishes no machine-readable contract. Every call carries the token in the `tk` query parameter; most write calls are POSTs whose JSON body has a root `data` object. Browser links (tour editor, videocall, viewer) are not API calls and are not included."
+ },
+ "servers": [
+  {
+   "url": "https://api.floorfy.com/api"
+  }
+ ],
+ "paths": {
+  "/property/add": {
+   "post": {
+    "operationId": "createProperty",
+    "summary": "Create property",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id_floorfy": {
+           "type": "integer"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           },
+           "property_type": {
+            "type": "integer",
+            "description": "1 House, 2 Flat, 3 Apartment, 4 Duplex, 5 Local, 6 Nave, 7 Office, 8 Garage, 9 Studio/Loft, 10 Penthouse, 11 Urban, 12 Urbanizable, 13 Not urbanizable, 14 Parking, 15 Storage room, 16 Living place"
+           },
+           "contract_type": {
+            "type": "integer",
+            "description": "1 Sale, 2 Renting, 3 Sold, 4 Rented"
+           },
+           "property_status": {
+            "type": "integer",
+            "description": "1 Active, 0 Archived"
+           },
+           "amount": {
+            "type": "number"
+           },
+           "title": {
+            "type": "string"
+           },
+           "description": {
+            "type": "string",
+            "maxLength": 4096
+           },
+           "rooms": {
+            "type": "integer"
+           },
+           "bathrooms": {
+            "type": "integer"
+           },
+           "living_area": {
+            "type": "number"
+           },
+           "total_area": {
+            "type": "number"
+           },
+           "location": {
+            "type": "object",
+            "properties": {
+             "city": {
+              "type": "string"
+             },
+             "address": {
+              "type": "string"
+             },
+             "province": {
+              "type": "string"
+             },
+             "number": {
+              "type": "integer"
+             },
+             "door": {
+              "type": "integer"
+             },
+             "floor": {
+              "type": "integer"
+             }
+            },
+            "required": [
+             "city"
+            ]
+           },
+           "photographer": {
+            "type": "string",
+            "description": "Email of the photographer or Floorfy username"
+           },
+           "time_type": {
+            "type": "string",
+            "enum": [
+             "before",
+             "after"
+            ]
+           },
+           "agent": {
+            "type": "integer"
+           },
+           "year_building": {
+            "type": "integer"
+           },
+           "facilities": {
+            "type": "array",
+            "items": {
+             "type": "integer"
+            }
+           },
+           "id_folder": {
+            "type": "integer"
+           },
+           "id_watermark": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Integer assigns it; null reverts to the agency default; omit for no change"
+           }
+          },
+          "required": [
+           "id_origin",
+           "location"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/property/update": {
+   "post": {
+    "operationId": "updateProperty",
+    "summary": "Update property",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id_floorfy": {
+           "type": "integer"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           },
+           "property_type": {
+            "type": "integer",
+            "description": "1 House, 2 Flat, 3 Apartment, 4 Duplex, 5 Local, 6 Nave, 7 Office, 8 Garage, 9 Studio/Loft, 10 Penthouse, 11 Urban, 12 Urbanizable, 13 Not urbanizable, 14 Parking, 15 Storage room, 16 Living place"
+           },
+           "contract_type": {
+            "type": "integer",
+            "description": "1 Sale, 2 Renting, 3 Sold, 4 Rented"
+           },
+           "property_status": {
+            "type": "integer",
+            "description": "1 Active, 0 Archived"
+           },
+           "amount": {
+            "type": "number"
+           },
+           "title": {
+            "type": "string"
+           },
+           "description": {
+            "type": "string",
+            "maxLength": 4096
+           },
+           "rooms": {
+            "type": "integer"
+           },
+           "bathrooms": {
+            "type": "integer"
+           },
+           "living_area": {
+            "type": "number"
+           },
+           "total_area": {
+            "type": "number"
+           },
+           "location": {
+            "type": "object",
+            "properties": {
+             "city": {
+              "type": "string"
+             },
+             "address": {
+              "type": "string"
+             },
+             "province": {
+              "type": "string"
+             },
+             "number": {
+              "type": "integer"
+             },
+             "door": {
+              "type": "integer"
+             },
+             "floor": {
+              "type": "integer"
+             }
+            },
+            "required": [
+             "city"
+            ]
+           },
+           "photographer": {
+            "type": "string",
+            "description": "Email of the photographer or Floorfy username"
+           },
+           "time_type": {
+            "type": "string",
+            "enum": [
+             "before",
+             "after"
+            ]
+           },
+           "agent": {
+            "type": "integer"
+           },
+           "year_building": {
+            "type": "integer"
+           },
+           "facilities": {
+            "type": "array",
+            "items": {
+             "type": "integer"
+            }
+           },
+           "id_folder": {
+            "type": "integer"
+           },
+           "id_watermark": {
+            "type": "integer",
+            "nullable": true,
+            "description": "Integer assigns it; null reverts to the agency default; omit for no change"
+           },
+           "deleted": {
+            "type": "boolean",
+            "description": "true deletes the property"
+           }
+          },
+          "required": [
+           "id_origin"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/properties": {
+   "post": {
+    "operationId": "listProperties",
+    "summary": "Get properties",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "total": {
+           "type": "integer"
+          },
+          "current_page_total": {
+           "type": "integer"
+          },
+          "page": {
+           "type": "integer"
+          },
+          "email_user": {
+           "type": "string",
+           "nullable": true
+          },
+          "id_folder": {
+           "type": "integer",
+           "nullable": true
+          },
+          "properties": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "id": {
+              "type": "integer"
+             },
+             "id_ext": {
+              "type": "string"
+             },
+             "active": {
+              "type": "boolean"
+             },
+             "publish_status": {
+              "type": "integer"
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": false,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "page": {
+            "type": "integer",
+            "minimum": 1
+           },
+           "email_user": {
+            "type": "string"
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/scene/upload": {
+   "post": {
+    "operationId": "uploadPanorama",
+    "summary": "Upload panorama",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id_floorfy": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           },
+           "room_type": {
+            "type": "string"
+           },
+           "file": {
+            "type": "string",
+            "description": "Equirectangular image, base64"
+           }
+          },
+          "required": [
+           "id_origin",
+           "file"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/multiple/scene/upload": {
+   "post": {
+    "operationId": "uploadPanoramas",
+    "summary": "Upload list of panoramas",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id_floorfy": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           },
+           "files": {
+            "type": "array",
+            "items": {
+             "type": "string"
+            }
+           }
+          },
+          "required": [
+           "id_origin",
+           "files"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/services/request": {
+   "post": {
+    "operationId": "requestServices",
+    "summary": "Process tour (order services)",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id_floorfy": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "type": {
+            "type": "string",
+            "enum": [
+             "3D",
+             "360"
+            ]
+           },
+           "floorplan": {
+            "type": "boolean"
+           }
+          }
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/property/exists": {
+   "post": {
+    "operationId": "propertyExists",
+    "summary": "Get tour status",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id_floorfy": {
+           "type": "string"
+          },
+          "has_tour": {
+           "type": "integer"
+          },
+          "property_status": {
+           "type": "integer"
+          },
+          "prop_history": {
+           "type": "object",
+           "additionalProperties": {
+            "type": "string"
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "id_origin"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/published/ready": {
+   "post": {
+    "operationId": "listPublishedTours",
+    "summary": "Get tours",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "total": {
+           "type": "integer"
+          },
+          "current_page_total": {
+           "type": "integer"
+          },
+          "page": {
+           "type": "integer"
+          },
+          "properties": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "id": {
+              "type": "string"
+             },
+             "tour": {
+              "type": "string"
+             },
+             "videocall": {
+              "type": "boolean"
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": false,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "page": {
+            "type": "integer",
+            "minimum": 1
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/agent/add": {
+   "post": {
+    "operationId": "createAgent",
+    "summary": "Create user",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "email": {
+            "type": "string"
+           },
+           "name": {
+            "type": "string"
+           },
+           "surname": {
+            "type": "string"
+           },
+           "phone": {
+            "type": "string"
+           },
+           "list_all_properties": {
+            "type": "boolean"
+           },
+           "is_read_only": {
+            "type": "boolean"
+           },
+           "folders": {
+            "type": "array",
+            "items": {
+             "type": "integer"
+            }
+           }
+          },
+          "required": [
+           "email"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/agent/update": {
+   "post": {
+    "operationId": "updateAgent",
+    "summary": "Update user",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "email": {
+            "type": "string"
+           },
+           "name": {
+            "type": "string"
+           },
+           "surname": {
+            "type": "string"
+           },
+           "phone": {
+            "type": "string"
+           },
+           "list_all_properties": {
+            "type": "boolean"
+           },
+           "is_read_only": {
+            "type": "boolean"
+           },
+           "folders": {
+            "type": "array",
+            "items": {
+             "type": "integer"
+            }
+           }
+          },
+          "required": [
+           "email"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/agent/get": {
+   "post": {
+    "operationId": "getAgent",
+    "summary": "Get user by email",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id": {
+           "type": "integer"
+          },
+          "token": {
+           "type": "string"
+          },
+          "email": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "email": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "email"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/agent/list": {
+   "post": {
+    "operationId": "listAgents",
+    "summary": "List agency users",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "total": {
+           "type": "integer"
+          },
+          "users": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "id": {
+              "type": "integer"
+             },
+             "token": {
+              "type": "string"
+             },
+             "email": {
+              "type": "string"
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": false,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {}
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/oh/inprogress": {
+   "post": {
+    "operationId": "openhouseInProgress",
+    "summary": "Check openhouse status",
+    "security": [
+     {
+      "PartnerToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "online": {
+           "type": "boolean"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "id"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/oh/contacts": {
+   "post": {
+    "operationId": "openhouseContacts",
+    "summary": "Check openhouse contacts",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "idfloorfy": {
+           "type": "integer"
+          },
+          "idproperty": {
+           "type": "string"
+          },
+          "title": {
+           "type": "string"
+          },
+          "agency": {
+           "type": "string"
+          },
+          "total_time_publish": {
+           "type": "string"
+          },
+          "users": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "name": {
+              "type": "string"
+             },
+             "sessions": {
+              "type": "array",
+              "items": {
+               "type": "object",
+               "properties": {
+                "time_start": {
+                 "type": "string"
+                },
+                "time_end": {
+                 "type": "string"
+                }
+               }
+              }
+             },
+             "actions": {
+              "type": "array",
+              "items": {
+               "type": "object",
+               "properties": {
+                "email": {
+                 "type": "string"
+                },
+                "phone": {
+                 "type": "string"
+                },
+                "date_contact": {
+                 "type": "string"
+                },
+                "date_visit": {
+                 "type": "string"
+                },
+                "amount": {
+                 "type": "number"
+                },
+                "message": {
+                 "type": "string"
+                },
+                "type": {
+                 "type": "string"
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "id"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/floorplan/get/room/area": {
+   "post": {
+    "operationId": "getRoomAreas",
+    "summary": "Get room areas",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "date_generated": {
+           "type": "string"
+          },
+          "room_areas": {
+           "type": "array",
+           "items": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "area": {
+               "type": "string"
+              },
+              "name": {
+               "type": "string"
+              },
+              "length": {
+               "type": "string"
+              },
+              "width": {
+               "type": "string"
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "id_origin"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/folder/create": {
+   "post": {
+    "operationId": "createFolder",
+    "summary": "Create folder",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "msg": {
+           "type": "string"
+          },
+          "id_folder": {
+           "type": "integer"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "name": {
+            "type": "string"
+           },
+           "id_parent": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "name"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/folder/update": {
+   "post": {
+    "operationId": "updateFolder",
+    "summary": "Update folder",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "msg": {
+           "type": "string"
+          },
+          "id_folder": {
+           "type": "integer"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_folder": {
+            "type": "integer"
+           },
+           "name": {
+            "type": "string"
+           },
+           "id_parent": {
+            "type": "integer",
+            "nullable": true
+           }
+          },
+          "required": [
+           "id_folder"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/folder/delete": {
+   "post": {
+    "operationId": "deleteFolder",
+    "summary": "Delete folder",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "msg": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_folder": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "id_folder"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/folder/list": {
+   "post": {
+    "operationId": "listFolders",
+    "summary": "List folders",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "folders": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "id": {
+              "type": "integer"
+             },
+             "name": {
+              "type": "string"
+             },
+             "parent_folder_id": {
+              "type": "integer"
+             },
+             "tours_count": {
+              "type": "integer"
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": false,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_parent": {
+            "type": "integer"
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/analytics/summary": {
+   "post": {
+    "operationId": "analyticsSummary",
+    "summary": "Analytics: get summary",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "data": {
+           "type": "object",
+           "properties": {
+            "total_visits": {
+             "type": "integer"
+            },
+            "total_users": {
+             "type": "integer"
+            },
+            "average_time": {
+             "type": "number"
+            },
+            "total_videocalls": {
+             "type": "integer"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "id_origin"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/analytics/locations": {
+   "post": {
+    "operationId": "analyticsLocations",
+    "summary": "Analytics: get locations",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "data": {
+           "type": "object",
+           "properties": {
+            "locations": {
+             "type": "object",
+             "properties": {
+              "countries": {
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               }
+              },
+              "regions": {
+               "type": "object",
+               "additionalProperties": {
+                "type": "integer"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "id_origin"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/analytics/visits": {
+   "post": {
+    "operationId": "analyticsVisits",
+    "summary": "Analytics: get visits list",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "data": {
+           "type": "object",
+           "properties": {
+            "has_more": {
+             "type": "boolean"
+            },
+            "items": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "referrer": {
+                "type": "string"
+               },
+               "time": {
+                "type": "string"
+               },
+               "country": {
+                "type": "string"
+               },
+               "region": {
+                "type": "string"
+               },
+               "city": {
+                "type": "string"
+               },
+               "date": {
+                "type": "string"
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "id_origin": {
+            "type": "string"
+           },
+           "page": {
+            "type": "integer",
+            "minimum": 1
+           },
+           "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+           }
+          },
+          "required": [
+           "id_origin",
+           "page",
+           "limit"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/watermark/upload": {
+   "post": {
+    "operationId": "uploadWatermark",
+    "summary": "Watermarks: upload",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "data": {
+           "type": "object",
+           "properties": {
+            "url": {
+             "type": "string"
+            },
+            "id": {
+             "type": "integer"
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "type": "object",
+        "properties": {
+         "data": {
+          "type": "object",
+          "properties": {
+           "type": {
+            "type": "string",
+            "enum": [
+             "tour",
+             "photo",
+             "video",
+             "floorplan",
+             "scene"
+            ]
+           },
+           "watermark": {
+            "type": "string",
+            "description": "Image, base64"
+           },
+           "active": {
+            "type": "boolean"
+           }
+          },
+          "required": [
+           "type",
+           "watermark",
+           "active"
+          ]
+         }
+        },
+        "required": [
+         "data"
+        ]
+       }
+      }
+     }
+    }
+   }
+  },
+  "/watermark/list": {
+   "get": {
+    "operationId": "listWatermarks",
+    "summary": "Watermarks: list",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "data": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "id": {
+              "type": "integer"
+             },
+             "type": {
+              "type": "string"
+             },
+             "active": {
+              "type": "boolean"
+             },
+             "url": {
+              "type": "string"
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/subscription/consumption": {
+   "get": {
+    "operationId": "getSubscriptionConsumption",
+    "summary": "Subscription: get consumption",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "boolean"
+          },
+          "data": {
+           "type": "object",
+           "properties": {
+            "tour": {
+             "type": "object",
+             "properties": {
+              "active": {
+               "type": "boolean"
+              },
+              "renewal_date": {
+               "type": "string",
+               "nullable": true
+              },
+              "usage": {
+               "type": "object",
+               "properties": {
+                "current": {
+                 "type": "integer"
+                },
+                "limit": {
+                 "type": "integer",
+                 "nullable": true
+                }
+               }
+              },
+              "service_credits": {
+               "type": "object",
+               "properties": {
+                "floorplan": {
+                 "type": "integer"
+                },
+                "3d_tour": {
+                 "type": "integer"
+                }
+               }
+              }
+             }
+            },
+            "image_staging": {
+             "type": "object",
+             "properties": {
+              "active": {
+               "type": "boolean"
+              },
+              "renewal_date": {
+               "type": "string",
+               "nullable": true
+              },
+              "usage": {
+               "type": "object",
+               "properties": {
+                "current": {
+                 "type": "integer"
+                },
+                "limit": {
+                 "type": "integer"
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/properties/{id}": {
+   "get": {
+    "operationId": "getProperty",
+    "summary": "Read property",
+    "security": [
+     {
+      "AgencyToken": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Result",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "status": {
+           "type": "integer"
+          },
+          "message": {
+           "type": "string"
+          },
+          "id": {
+           "type": "string"
+          },
+          "tour": {
+           "type": "string"
+          },
+          "idFloorfy": {
+           "type": "integer"
+          },
+          "youtube_url": {
+           "type": "string"
+          },
+          "video_url": {
+           "type": "string"
+          },
+          "images": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "imgs_watermark": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "bounded_floorplan": {
+           "type": "string"
+          },
+          "scaled_floorplan": {
+           "type": "string"
+          },
+          "uploaded_floorplan": {
+           "type": "string"
+          },
+          "scaled_floorplan_images": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "bounded_floorplan_images": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "uploaded_floorplan_images": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "scaled_floorplan_branded_images": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "bounded_floorplan_branded_images": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "uploaded_floorplan_branded_images": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "last_upload_date": {
+           "type": "string"
+          },
+          "is_published": {
+           "type": "boolean"
+          },
+          "property_type": {
+           "type": "integer"
+          },
+          "contract_type": {
+           "type": "integer"
+          },
+          "amount": {
+           "type": "number"
+          },
+          "title": {
+           "type": "string"
+          },
+          "description": {
+           "type": "string"
+          },
+          "rooms": {
+           "type": "integer"
+          },
+          "bathrooms": {
+           "type": "integer"
+          },
+          "living_area": {
+           "type": "number"
+          },
+          "total_area": {
+           "type": "number"
+          },
+          "property_status": {
+           "type": "integer"
+          },
+          "version": {
+           "type": "integer"
+          },
+          "location": {
+           "type": "object",
+           "properties": {
+            "city": {
+             "type": "string"
+            },
+            "address": {
+             "type": "string"
+            },
+            "number": {
+             "type": "integer"
+            },
+            "door": {
+             "type": "integer"
+            },
+            "floor": {
+             "type": "integer"
+            }
+           }
+          },
+          "extras": {
+           "type": "object",
+           "properties": {
+            "photographer": {
+             "type": "string"
+            }
+           }
+          },
+          "id_folder": {
+           "type": "integer",
+           "nullable": true
+          },
+          "id_watermark": {
+           "type": "integer",
+           "nullable": true
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "securitySchemes": {
+   "AgencyToken": {
+    "type": "apiKey",
+    "in": "query",
+    "name": "tk"
+   },
+   "PartnerToken": {
+    "type": "apiKey",
+    "in": "query",
+    "name": "tk"
+   }
+  }
+ }
+}
