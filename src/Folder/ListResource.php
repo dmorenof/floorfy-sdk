@@ -17,5 +17,4 @@ final class ListResource extends \FloorfySDK\FloorfyAPISDK
         }
         return self::client()->resource(\FloorfySDK\Resources\Folder\ListResource::class)->post($payload);
     }
-
 }

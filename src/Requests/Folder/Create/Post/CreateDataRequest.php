@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Folder\Create\Post;
 final class CreateDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'name',
-];
+        'name',
+    ];
 
     public int $id_parent;
     public string $name;

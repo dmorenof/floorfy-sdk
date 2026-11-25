@@ -7,11 +7,11 @@ namespace FloorfySDK\Responses\Subscription\Consumption\Get\Data\Tour;
 final class ServiceCreditsResponse extends \Dmorenof\SdkRuntime\DTO
 {
     protected const array PROPERTY_MAP = [
-    '3d_tour' => '_3d_tour',
-];
+        '3d_tour' => '_3d_tour',
+    ];
     protected const array WIRE_PROPERTY_MAP = [
-    '_3d_tour' => '3d_tour',
-];
+        '_3d_tour' => '3d_tour',
+    ];
 
     public int $_3d_tour;
     public int $floorplan;

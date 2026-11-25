@@ -7,9 +7,9 @@ namespace FloorfySDK\Requests\Multiple\Scene\Upload\Post;
 final class UploadDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'files',
-    'id_origin',
-];
+        'files',
+        'id_origin',
+    ];
 
     public \FloorfySDK\Collections\StringCollection $files;
     public string $id_origin;

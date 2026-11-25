@@ -14,5 +14,4 @@ final class Upload extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Watermark\Upload::class)->post($payload);
     }
-
 }

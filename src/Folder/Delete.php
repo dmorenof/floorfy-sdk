@@ -14,5 +14,4 @@ final class Delete extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Folder\Delete::class)->post($payload);
     }
-
 }

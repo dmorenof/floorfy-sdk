@@ -14,5 +14,4 @@ final class Area extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Floorplan\Get\Room\Area::class)->post($payload);
     }
-
 }

@@ -32,5 +32,4 @@ final class Update extends \FloorfySDK\Client
         $result = $this->executeBody(self::operation(self::POST), $payload);
         return $result;
     }
-
 }

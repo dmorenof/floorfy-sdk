@@ -7,10 +7,10 @@ namespace FloorfySDK\Requests\Watermark\Upload\Post;
 final class UploadDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'active',
-    'type',
-    'watermark',
-];
+        'active',
+        'type',
+        'watermark',
+    ];
 
     public bool $active;
     public \FloorfySDK\Enums\Watermark\Upload\Post\Data\DataTypeEnum $type;

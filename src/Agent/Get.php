@@ -14,5 +14,4 @@ final class Get extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Agent\Get::class)->post($payload);
     }
-
 }

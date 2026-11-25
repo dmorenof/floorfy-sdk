@@ -17,5 +17,4 @@ final class Ready extends \FloorfySDK\FloorfyAPISDK
         }
         return self::client()->resource(\FloorfySDK\Resources\Published\Ready::class)->post($payload);
     }
-
 }

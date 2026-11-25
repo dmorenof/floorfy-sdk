@@ -7,9 +7,8 @@ namespace FloorfySDK\Requests\Folder\Delete;
 final class Post extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'data',
-];
+        'data',
+    ];
 
     public \FloorfySDK\Requests\Folder\Delete\Post\FolderDataRequest $data;
-
 }

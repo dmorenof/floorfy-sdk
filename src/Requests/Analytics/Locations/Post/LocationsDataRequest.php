@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Analytics\Locations\Post;
 final class LocationsDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id_origin',
-];
+        'id_origin',
+    ];
 
     public string $id_origin;
 

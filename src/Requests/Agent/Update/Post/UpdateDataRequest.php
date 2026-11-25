@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Agent\Update\Post;
 final class UpdateDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'email',
-];
+        'email',
+    ];
 
     public string $email;
     public \FloorfySDK\Collections\IntegerCollection $folders;

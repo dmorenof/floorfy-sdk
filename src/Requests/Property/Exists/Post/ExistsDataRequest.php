@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Property\Exists\Post;
 final class ExistsDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id_origin',
-];
+        'id_origin',
+    ];
 
     public string $id_origin;
 

@@ -14,5 +14,4 @@ final class Visits extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Analytics\Visits::class)->post($payload);
     }
-
 }

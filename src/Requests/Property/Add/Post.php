@@ -7,9 +7,8 @@ namespace FloorfySDK\Requests\Property\Add;
 final class Post extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'data',
-];
+        'data',
+    ];
 
     public \FloorfySDK\Requests\Property\Add\Post\AddDataRequest $data;
-
 }

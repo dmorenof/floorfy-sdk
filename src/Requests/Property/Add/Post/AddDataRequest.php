@@ -7,15 +7,15 @@ namespace FloorfySDK\Requests\Property\Add\Post;
 final class AddDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id_origin',
-    'location',
-];
+        'id_origin',
+        'location',
+    ];
 
     protected const array VALIDATION = [
-    'description' => [
-        'maxLength' => 4096,
-    ],
-];
+        'description' => [
+            'maxLength' => 4096,
+        ],
+    ];
 
     public int $agent;
     public float $amount;

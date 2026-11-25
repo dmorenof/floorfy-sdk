@@ -7,10 +7,10 @@ namespace FloorfySDK\Requests\Published\Ready\Post;
 final class ReadyDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     protected const array VALIDATION = [
-    'page' => [
-        'minimum' => 1,
-    ],
-];
+        'page' => [
+            'minimum' => 1,
+        ],
+    ];
 
     public int $page {
         set {

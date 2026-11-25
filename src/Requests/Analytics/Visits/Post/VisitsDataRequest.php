@@ -7,20 +7,20 @@ namespace FloorfySDK\Requests\Analytics\Visits\Post;
 final class VisitsDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id_origin',
-    'limit',
-    'page',
-];
+        'id_origin',
+        'limit',
+        'page',
+    ];
 
     protected const array VALIDATION = [
-    'limit' => [
-        'minimum' => 1,
-        'maximum' => 100,
-    ],
-    'page' => [
-        'minimum' => 1,
-    ],
-];
+        'limit' => [
+            'minimum' => 1,
+            'maximum' => 100,
+        ],
+        'page' => [
+            'minimum' => 1,
+        ],
+    ];
 
     public string $id_origin;
     public int $limit {

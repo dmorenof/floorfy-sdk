@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Oh\Inprogress\Post;
 final class InprogressDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id',
-];
+        'id',
+    ];
 
     public int $id;
 

@@ -14,5 +14,4 @@ final class Exists extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Property\Exists::class)->post($payload);
     }
-
 }

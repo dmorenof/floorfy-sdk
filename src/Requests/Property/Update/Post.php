@@ -7,9 +7,8 @@ namespace FloorfySDK\Requests\Property\Update;
 final class Post extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'data',
-];
+        'data',
+    ];
 
     public \FloorfySDK\Requests\Property\Update\Post\UpdateDataRequest $data;
-
 }

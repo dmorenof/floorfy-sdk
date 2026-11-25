@@ -7,10 +7,10 @@ namespace FloorfySDK\Requests\Properties\Post;
 final class PropertiesDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     protected const array VALIDATION = [
-    'page' => [
-        'minimum' => 1,
-    ],
-];
+        'page' => [
+            'minimum' => 1,
+        ],
+    ];
 
     public string $email_user;
     public int $page {

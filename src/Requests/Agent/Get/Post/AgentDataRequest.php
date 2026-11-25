@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Agent\Get\Post;
 final class AgentDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'email',
-];
+        'email',
+    ];
 
     public string $email;
 

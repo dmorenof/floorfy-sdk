@@ -14,5 +14,4 @@ final class Inprogress extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Oh\Inprogress::class)->post($payload);
     }
-
 }

@@ -14,5 +14,4 @@ final class Summary extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Analytics\Summary::class)->post($payload);
     }
-
 }

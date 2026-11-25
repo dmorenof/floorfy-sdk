@@ -7,19 +7,19 @@ namespace FloorfySDK;
 class Client extends \Dmorenof\SdkRuntime\ApiClient
 {
     protected const array SECURITY_SCHEMES = [
-    'AgencyToken' => [
-        'type' => 'apiKey',
-        'scheme' => null,
-        'location' => 'query',
-        'parameterName' => 'tk',
-    ],
-    'PartnerToken' => [
-        'type' => 'apiKey',
-        'scheme' => null,
-        'location' => 'query',
-        'parameterName' => 'tk',
-    ],
-];
+        'AgencyToken' => [
+            'type' => 'apiKey',
+            'scheme' => null,
+            'location' => 'query',
+            'parameterName' => 'tk',
+        ],
+        'PartnerToken' => [
+            'type' => 'apiKey',
+            'scheme' => null,
+            'location' => 'query',
+            'parameterName' => 'tk',
+        ],
+    ];
 
     private static ?self $currentConnection = null;
 

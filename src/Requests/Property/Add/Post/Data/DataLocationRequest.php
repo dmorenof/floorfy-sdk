@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Property\Add\Post\Data;
 final class DataLocationRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'city',
-];
+        'city',
+    ];
 
     public string $address;
     public string $city;

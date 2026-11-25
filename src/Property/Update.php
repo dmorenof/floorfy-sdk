@@ -14,5 +14,4 @@ final class Update extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Property\Update::class)->post($payload);
     }
-
 }

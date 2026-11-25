@@ -7,9 +7,8 @@ namespace FloorfySDK\Requests\Watermark\Upload;
 final class Post extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'data',
-];
+        'data',
+    ];
 
     public \FloorfySDK\Requests\Watermark\Upload\Post\UploadDataRequest $data;
-
 }

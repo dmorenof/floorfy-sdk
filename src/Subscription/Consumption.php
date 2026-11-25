@@ -14,5 +14,4 @@ final class Consumption extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Subscription\Consumption::class)->get();
     }
-
 }

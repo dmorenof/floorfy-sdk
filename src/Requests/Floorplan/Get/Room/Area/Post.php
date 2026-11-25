@@ -7,9 +7,8 @@ namespace FloorfySDK\Requests\Floorplan\Get\Room\Area;
 final class Post extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'data',
-];
+        'data',
+    ];
 
     public \FloorfySDK\Requests\Floorplan\Get\Room\Area\Post\AreaDataRequest $data;
-
 }

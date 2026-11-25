@@ -7,9 +7,9 @@ namespace FloorfySDK\Requests\Scene\Upload\Post;
 final class UploadDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'file',
-    'id_origin',
-];
+        'file',
+        'id_origin',
+    ];
 
     /**
      * Equirectangular image, base64

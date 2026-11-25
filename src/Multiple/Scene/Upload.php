@@ -14,5 +14,4 @@ final class Upload extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Multiple\Scene\Upload::class)->post($payload);
     }
-
 }

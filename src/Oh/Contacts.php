@@ -14,5 +14,4 @@ final class Contacts extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Oh\Contacts::class)->post($payload);
     }
-
 }

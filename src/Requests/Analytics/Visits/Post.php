@@ -7,9 +7,8 @@ namespace FloorfySDK\Requests\Analytics\Visits;
 final class Post extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'data',
-];
+        'data',
+    ];
 
     public \FloorfySDK\Requests\Analytics\Visits\Post\VisitsDataRequest $data;
-
 }

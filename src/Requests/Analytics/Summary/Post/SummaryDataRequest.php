@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Analytics\Summary\Post;
 final class SummaryDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id_origin',
-];
+        'id_origin',
+    ];
 
     public string $id_origin;
 

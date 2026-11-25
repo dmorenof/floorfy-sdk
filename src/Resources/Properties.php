@@ -53,5 +53,4 @@ final class Properties extends \FloorfySDK\Client
         $result = $this->executeArguments(self::operation(self::GET_BY_ID), path: ['id' => $id]);
         return $result;
     }
-
 }

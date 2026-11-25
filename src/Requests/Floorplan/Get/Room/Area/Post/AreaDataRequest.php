@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Floorplan\Get\Room\Area\Post;
 final class AreaDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id_origin',
-];
+        'id_origin',
+    ];
 
     public string $id_origin;
 

@@ -14,5 +14,4 @@ final class ListResource extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Watermark\ListResource::class)->get();
     }
-
 }

@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Oh\Contacts\Post;
 final class ContactsDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id',
-];
+        'id',
+    ];
 
     public int $id;
 

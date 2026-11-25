@@ -26,5 +26,4 @@ final class Properties extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Properties::class)->getById($id);
     }
-
 }

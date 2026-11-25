@@ -14,5 +14,4 @@ final class Add extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Agent\Add::class)->post($payload);
     }
-
 }

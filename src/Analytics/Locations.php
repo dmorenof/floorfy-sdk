@@ -14,5 +14,4 @@ final class Locations extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Analytics\Locations::class)->post($payload);
     }
-
 }

@@ -7,8 +7,8 @@ namespace FloorfySDK\Requests\Folder\Update\Post;
 final class UpdateDataRequest extends \Dmorenof\SdkRuntime\DTO
 {
     public const array REQUIRED_FIELDS = [
-    'id_folder',
-];
+        'id_folder',
+    ];
 
     public int $id_folder;
     public ?int $id_parent;

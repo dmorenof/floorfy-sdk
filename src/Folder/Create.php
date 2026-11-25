@@ -14,5 +14,4 @@ final class Create extends \FloorfySDK\FloorfyAPISDK
     {
         return self::client()->resource(\FloorfySDK\Resources\Folder\Create::class)->post($payload);
     }
-
 }
